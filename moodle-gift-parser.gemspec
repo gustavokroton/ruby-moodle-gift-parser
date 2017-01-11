@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = 'A simple hello world gem'
   s.authors     = ['Oliver Kuster']
   s.email       = 'olivervbk@gmail.com'
-  s.files       = ['lib/parser.rb']
+  s.files       = ['lib/moodle_gift.rb', 'lib/moodle_gift/parser.rb']
   s.homepage    = 'https://github.com/olivervbk/ruby-moodle-gift-parser'
   s.license     = 'MIT'
   s.add_development_dependency 'rspec'

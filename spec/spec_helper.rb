@@ -2,8 +2,10 @@
 require 'bundler/setup'
 Bundler.setup
 
+require 'moodle_gift'
 #require 'your_gem_name' # and any other gems you need
 
-#RSpec.configure do |config|
-  # some (optional) config here
-#end
+RSpec.configure do |config|
+#  config.color_enabled = true
+  config.formatter     = 'documentation'
+end

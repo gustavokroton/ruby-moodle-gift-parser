@@ -1,6 +1,6 @@
-require 'rspec'
+require 'spec_helper'
 
-describe 'Quetion Parser' do
+describe 'Question Parser' do
   before(:all) do
     @parser = MoodleGift::Parser.new
   end
