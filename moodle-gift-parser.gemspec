@@ -9,4 +9,5 @@ Gem::Specification.new do |s|
   s.files       = ['lib/parser.rb']
   s.homepage    = 'https://github.com/olivervbk/ruby-moodle-gift-parser'
   s.license     = 'MIT'
+  s.add_development_dependency 'rspec'
 end
