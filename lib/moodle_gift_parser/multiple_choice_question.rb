@@ -95,9 +95,8 @@ class MoodleGiftParser::MultipleChoiceQuestion < MoodleGiftParser::Question
           debug {"Found hash: count #{hashes}"}
           if hashes > 4
             raise MoodleGiftParser::InvalidGiftFormatError, "Invalid sequence of '#####' found."
-          elsif hashes > 1 && !was_comment
-            raise MoodleGiftParser::InvalidGiftFormatError, "Invalid sequence of '#' found."
           end
+
           next
         end
 
@@ -119,6 +118,10 @@ class MoodleGiftParser::MultipleChoiceQuestion < MoodleGiftParser::Question
           end
           state = State::GENERIC_COMMENT
           hashes = 0
+        end
+
+        if hashes > 0
+          raise MoodleGiftParser::InvalidGiftFormatError, "Invalid sequence of '#' found."
         end
 
 
