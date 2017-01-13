@@ -1,11 +1,10 @@
 class MoodleGiftParser::Question
-  @comment = nil
-  @category = nil
-
-  @title = nil
-  @markup = nil
-  @content = nil
-  @options = nil
+  attr_accessor :comment
+  attr_accessor :category
+  attr_accessor :title
+  attr_accessor :markup
+  attr_accessor :content
+  attr_accessor :options
 
   def initialize(question = nil)
     if question && question.is_a?(MoodleGiftParser::Question)
@@ -18,19 +17,23 @@ class MoodleGiftParser::Question
     end
   end
 
-  def comment; @comment end
-  def category; @category end
+  def to_gift
+    output = ''
+    #FIXME Multiline comment?
+    output << "// #{comment}\n" if comment
+    output << "$CATEGORY: #{category}\n" if category
+    output << "::#{title}::" if title
+    output << "[#{markup}]" if markup
+    output << escape_chars(content) + "{\n"
+    output << options + "\n}"
+    return output
+  end
 
-  def title; @title end
-  def markup; @markup end
-  def content; @content end
-  def options; @options end
-
-  def comment=(input) @comment = input end
-  def category=(input) @category = input end
-
-  def title=(input) @title = input end
-  def markup=(input) @markup = input end
-  def content=(input) @content = input end
-  def options=(input) @options = input end
+  private
+  def escape_chars(string)
+    escaped = string.tr("\r\n", '')
+    escaped.gsub!('\\', '\\\\\\') # \ -> \\
+    '~#={}'.split('').each { |c| escaped.gsub!(c, '\\'+c) }
+    return escaped
+  end
 end

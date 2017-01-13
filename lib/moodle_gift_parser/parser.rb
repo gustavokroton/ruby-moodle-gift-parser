@@ -1,8 +1,7 @@
-#https://docs.moodle.org/32/en/GIFT_format
 module MoodleGiftParser
-  class Parser
-    include MoodleGiftParser::UtilHelper
+  #https://docs.moodle.org/32/en/GIFT_format
 
+  class Parser
     CATEGORY_PREFIX = '$CATEGORY: '
     COMMENT_PREFIX  = '//'
 
@@ -71,7 +70,7 @@ module MoodleGiftParser
         question_text.gsub!(markup_regex, '')
       end
 
-      debug {"after markup_match:#{question_text}"}
+      MoodleGiftParser.logger.debug {"after markup_match:#{question_text}"}
 
       #FIXME ignore escaped braces
       content_regex = /^([^{]+)\{/
@@ -83,7 +82,7 @@ module MoodleGiftParser
         raise MoodleGiftParser::InvalidGiftFormatError, "Missing question content before '{'."
       end
 
-      debug {"after content_match:#{question_text}"}
+      MoodleGiftParser.logger.debug {"after content_match:#{question_text}"}
 
       #FIXME ignore escaped braces
       options_regex = /^(\{.*})/m
@@ -97,7 +96,6 @@ module MoodleGiftParser
 
       question.options = options_match[1][1..-2]
       question_text.gsub!(options_regex, '')
-
 
       #FIXME get content after keys
 
@@ -113,14 +111,14 @@ module MoodleGiftParser
       ]
 
       question_classes.each do |qclass|
-        debug {"Checking conversion for: #{qclass.name}"}
+        MoodleGiftParser.logger.debug {"Checking conversion for: #{qclass.name}"}
         if qclass.respond_to?(:can_convert?) && qclass.can_convert?(question)
-          debug {"Converting to #{qclass.name}"}
+          MoodleGiftParser.logger.debug {"Converting to #{qclass.name}"}
           return qclass.new(question)
         end
       end
 
-      warn {"No valid question type found for question: #{question}"}
+      MoodleGiftParser.logger.warn {"No valid question type found for question: #{question}"}
 
       return question
     end

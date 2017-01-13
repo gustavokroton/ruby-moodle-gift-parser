@@ -10,4 +10,9 @@ class MoodleGiftParser::EssayQuestion < MoodleGiftParser::Question
   def initialize(question = nil)
     super(question)
   end
+
+  def to_gift
+    self.options = ''
+    return super
+  end
 end
