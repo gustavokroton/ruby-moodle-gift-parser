@@ -65,7 +65,6 @@ class MoodleGiftParser::MultipleChoiceQuestion < MoodleGiftParser::Question
 
       options.split('').each_with_index {|c,i|
         is_escaped = last_char == ESCAPE_CHAR
-        was_comment = last_char == ANSWER_COMMENT_PREFIX
         last_char = c
 
         if VALID_ALTERNATIVE_PREFIXES.include?(c) && !is_escaped
