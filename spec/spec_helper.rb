@@ -9,4 +9,5 @@ require 'rspec/collection_matchers'
 RSpec.configure do |config|
 #  config.color_enabled = true
   config.formatter     = 'documentation'
+  #RAILS 5:config.file_fixture_path = "spec/example"
 end

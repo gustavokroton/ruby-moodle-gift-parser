@@ -1,0 +1,36 @@
+// question: 0  name: Switch category to $system$/Default/Example Category/Sub Category
+$CATEGORY: $system$/Default/Example Category/Sub Category
+
+
+// question: 81658  name: 2017.1-U4S1-Q01
+::2017.1-U4S1-Q01::[html]<p><span>Example 1</span></p>\n<p><span>Therefore\: </span></p>\n<p><span>Question\:</span></p>{
+	~<p><span>First</span></p>
+	~<p><span>Second.</span></p>
+	=<p><span>Correct.</span></p>#<p><span>Reason.</span></p>
+	~<p><span>Fourth.</span></p>
+	~<p><span>Fifth.</span></p>
+}
+
+
+// question: 81659  name: 2017.1-U4S1-Q02
+::2017.1-U4S1-Q02::[html]<p><span>Example1 (2015)\: </span></p>\n<p><span>( )\:</span></p>{
+	~<p><span>V,V,F,V,V,V,F.</span></p>
+	~<p><span>V,F,V,V,V,F,V.</span></p>
+	=<p><span>V,V,V,V,V,V,V.</span></p>#<p><span>Reason</span></p>
+	~<p><span>V,F,F,V,V,V,V.</span></p>
+	~<p><span>F,V,V,V,V,V,V.</span></p>
+}
+
+
+$CATEGORY: $system$/Default/Example Category 2/Sub Category 2
+
+
+// question: 87569  name: 2017.1-Q03
+::2017.1-Q03::[html]<p>Image\:</p>\n<p><img src\="http\://missing.png" alt\="" width\="474" height\="282" /></p>\n<p>Figure\:</p>{
+	~<p>First.</p>
+	=<p>Second.</p>
+	~<p>Third “o”.</p>
+	~<p>Fourth.</p>
+	~<p>Fifth.</p>
+	####<p>Generic comment!.</p>
+}

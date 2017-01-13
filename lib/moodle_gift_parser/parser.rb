@@ -14,14 +14,11 @@ module MoodleGiftParser
       question    = ''
       empty_lines = 0
       content.each_line do |line|
-        if line.length == 0
+        if line.strip.empty?
           empty_lines+=1
           if empty_lines >= 2 && !question.empty?
-            begin
-              questions << build_question(question, category, comment)
-            rescue => e
-              raise MoodleGiftParser::InvalidGiftFormatError, "Error parsing question:#{e.message}\nQuestion: '#{question}'", e.backtrace
-            end
+            MoodleGiftParser.logger.debug {"Question finished: '#{question}'"}
+            questions << build_question_wrapped(question, category, comment)
 
             question = ''
             comment  = ''
@@ -30,20 +27,36 @@ module MoodleGiftParser
         end
 
         if line.start_with?(CATEGORY_PREFIX)
-          category = line[CATEGORY_PREFIX.length..-1]
+          category = line[CATEGORY_PREFIX.length..-1].strip
+          MoodleGiftParser.logger.debug {"Found category: '#{category}'"}
           next
         end
 
         if line.start_with?(COMMENT_PREFIX)
           #concat if multiline comment
           comment = comment + line[COMMENT_PREFIX.length..-1]
+          MoodleGiftParser.logger.debug {"Found comment: '#{comment.strip}'"}
           next
         end
 
         question = question + line
       end
 
+      if !question.empty?
+        MoodleGiftParser.logger.debug {"Last question finished: '#{question}'"}
+        questions << build_question_wrapped(question, category, comment)
+      end
+
       return questions
+    end
+
+    private
+    def build_question_wrapped(question, category, comment)
+      begin
+        return build_question(question, category, comment)
+      rescue => e
+        raise MoodleGiftParser::InvalidGiftFormatError, "Error parsing question:#{e.message}\nQuestion: '#{question}'", e.backtrace
+      end
     end
 
     private

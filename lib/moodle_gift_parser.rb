@@ -1,14 +1,15 @@
 module MoodleGiftParser
   require 'logger'
 
-  require 'moodle_gift_parser/parser'
+  require 'moodle_gift_parser/gift_error'
+  require 'moodle_gift_parser/invalid_gift_format_error'
+
 
   require 'moodle_gift_parser/question'
   require 'moodle_gift_parser/essay_question'
   require 'moodle_gift_parser/multiple_choice_question'
 
-  require 'moodle_gift_parser/gift_error'
-  require 'moodle_gift_parser/invalid_gift_format_error'
+  require 'moodle_gift_parser/parser'
 
   class << self
     #http://stackoverflow.com/questions/11729456/how-do-i-log-correctly-inside-my-ruby-gem
@@ -18,7 +19,7 @@ module MoodleGiftParser
     def logger
       @logger ||= Logger.new($stdout).tap do |log|
         log.progname = self.name
-        log.level = Logger::INFO
+        log.level = Logger::DEBUG #INFO
       end
       return @logger
     end

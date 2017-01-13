@@ -36,7 +36,7 @@ class MoodleGiftParser::MultipleChoiceQuestion < MoodleGiftParser::Question
         current_alt.credit  = 0
       end
       current_alt.content = ''
-      current_alt.comment = ''
+      current_alt.comment = nil
       return current_alt
     end
   end
@@ -109,7 +109,7 @@ class MoodleGiftParser::MultipleChoiceQuestion < MoodleGiftParser::Question
         if state == State::COMMENT
           raise MoodleGiftParser::InvalidGiftFormatError, "Two following comment sequences with '#' found."
         end
-
+        current_alt.comment = ''
         state  = State::COMMENT
         hashes = 0
       end
