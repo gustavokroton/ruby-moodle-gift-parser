@@ -118,9 +118,9 @@ describe 'MultipleChoiceQuestion Parser Exceptions' do
   it 'should fail on weird sequences of hashes' do
     expect {
       @question = @parser.send(:build_question, 'Question{
-  ###WRONG
   =correct
   ~wrong
+  ###WRONG
 }', nil, nil)
     }.to raise_error(MoodleGiftParser::InvalidGiftFormatError)
   end
