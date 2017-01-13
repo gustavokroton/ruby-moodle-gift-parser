@@ -1,5 +1,5 @@
 module MoodleGiftParser::UtilHelper
-  @@debug = true
+  @@debug = false
   @@warn = true
   def debug(arg = nil)
     return unless @@debug
