@@ -2,8 +2,9 @@
 require 'bundler/setup'
 Bundler.setup
 
-require 'moodle_gift'
-#require 'your_gem_name' # and any other gems you need
+require 'moodle_gift_parser'
+require 'rspec'
+require 'rspec/collection_matchers'
 
 RSpec.configure do |config|
 #  config.color_enabled = true
