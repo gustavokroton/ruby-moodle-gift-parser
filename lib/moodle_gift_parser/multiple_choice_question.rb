@@ -136,6 +136,8 @@ class MoodleGiftParser::MultipleChoiceQuestion < MoodleGiftParser::Question
             raise "Invalid internal type:#{state}"
         end
       }
+
+      # TODO unescape \ chars
       alternatives.each{|alt| alt.content && alt.content.strip!; alt.comment && alt.comment.strip!}
       self.generic_comment.strip!
       self.alternatives = alternatives
