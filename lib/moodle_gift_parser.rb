@@ -10,6 +10,7 @@ module MoodleGiftParser
   require 'moodle_gift_parser/multiple_choice_question'
 
   require 'moodle_gift_parser/parser'
+  require 'moodle_gift_parser/writer'
 
   class << self
     #http://stackoverflow.com/questions/11729456/how-do-i-log-correctly-inside-my-ruby-gem
