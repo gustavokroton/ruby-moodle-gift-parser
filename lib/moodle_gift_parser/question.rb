@@ -24,8 +24,8 @@ class MoodleGiftParser::Question
     output << "$CATEGORY: #{category}\n" if category
     output << "::#{title}::" if title
     output << "[#{markup}]" if markup
-    output << escape_chars(content) + "{\n"
-    output << options + "\n}"
+    output << escape_chars(content) + "{"
+    output << options + "}"
     return output
   end
 

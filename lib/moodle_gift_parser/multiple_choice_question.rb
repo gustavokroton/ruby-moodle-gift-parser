@@ -21,8 +21,8 @@ class MoodleGiftParser::MultipleChoiceQuestion < MoodleGiftParser::Question
     def to_gift
       prefix = correct ? MoodleGiftParser::MultipleChoiceQuestion::CORRECT_ALTERNATIVE_PREFIX : MoodleGiftParser::MultipleChoiceQuestion::WRONG_ALTERNATIVE_PREFIX
       # TODO parse credit/range/credit
-      result = "\t#{prefix}#{content}"
-      result << "\t#{MoodleGiftParser::MultipleChoiceQuestion::ANSWER_COMMENT_PREFIX}#{comment}" if comment
+      result = "\t#{prefix}#{content}\n"
+      result << "\t#{MoodleGiftParser::MultipleChoiceQuestion::ANSWER_COMMENT_PREFIX}#{comment}\n" if comment
       return result
     end
 
@@ -165,7 +165,7 @@ class MoodleGiftParser::MultipleChoiceQuestion < MoodleGiftParser::Question
   end
 
   def to_gift
-    self.options = ''
+    self.options = "\n"
     alternatives.each do |alt|
       self.options << alt.to_gift
     end
